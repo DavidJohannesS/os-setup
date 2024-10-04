@@ -1,0 +1,65 @@
+---
+- name: OS-SETUP
+  hosts: all
+  become: true
+  tasks:
+    - name: Install core packages
+      ansible.builtin.apt:
+        name:
+          - xfce4-panel
+          - picom
+          - thunar
+          - thunar-archive-plugin
+          - ufw
+          - xfce4-terminal
+          - xfce4-notifyd
+          - xfce4-pulseaudio-plugin
+          - xfce4-power-manager
+          - rofi
+          - flameshot
+          - git
+          - vim
+          - net-tools
+          - bluez
+          - blueman
+          - i3
+          - lightdm
+          - x2goserver
+          - x2goserver-xsession
+          - python3
+          - npm
+          - nitrogen
+          - zoxide
+          - lxappearance
+          - breeze-cursor-theme
+        state: present
+        update_cache: true
+
+    - name: Add a setting to ~/.gitconfig
+      community.general.git_config:
+        name: core.editor
+        scope: global
+        value: vim
+
+    - name: Fix Git_install
+      ansible.builtin.shell:
+        cmd: |
+          git config --global init.defaultBranch main
+          git config --global alias.lol "log --graph --decorate --oneline --all"
+        creates: /home/{{ ansible_user }}/.git_editor_fixed
+      tags:
+        - skip_ansible_lint
+
+    - name: Fix envs
+      ansible.builtin.copy:
+        src: ../inventory/.bash_aliases
+        dest: /home/{{ ansible_user }}
+        mode: '0765'
+
+    - name: Fix user pwd promt
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^{{ ansible_user }} ALL=\(ALL\) NOPASSWD: ALL'
+        line: '{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'

@@ -1,0 +1,25 @@
+---
+- name: Setup Tmux
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Ensure tmux is installed
+      ansible.builtin.apt:
+        name:
+          - tmux
+        state: present
+        update_cache: true
+
+    - name: Installed TPM
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: /home/{{ ansible_user }}/.tmux/plugins/
+        update: true
+      tags:
+        - skip_ansible_lint
+
+    - name: Copy tmux.conf
+      ansible.builtin.copy:
+        src: ../inventory/.tmyx.conf
+        dest: /home/{{ ansible_user }}/
+        mode: '0765'
