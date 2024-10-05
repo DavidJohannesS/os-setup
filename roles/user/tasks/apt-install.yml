@@ -1,8 +1,9 @@
 ---
-- name: OS-SETUP
-  hosts: all
-  become: true
-  tasks:
+- name: Update apt packages
+  tags:
+    - update_packages
+  block:
+
     - name: Install core packages
       ansible.builtin.apt:
         name:
@@ -32,20 +33,28 @@
           - zoxide
           - lxappearance
           - breeze-cursor-theme
+          - curl
+          - fzf
+          - htop
+          - nala
+          - pass
+          - s-tui
+          - pulseeffects
+          - tmux
+          - vlc
+          - shotwell
+          - xarchiver
+          - xclip
+          - cifs-utils
+          - gvfs-backends
+          - golang-go
+          - tree
+          - adwaita-icon-theme
         state: present
         update_cache: true
 
-
-    - name: Fix envs
-      ansible.builtin.copy:
-        src: ../inventory/.bash_aliases
-        dest: /home/{{ ansible_user }}
-        mode: '0765'
-
-    - name: Fix user pwd promt
-      ansible.builtin.lineinfile:
-        path: /etc/sudoers
-        state: present
-        regexp: '^{{ ansible_user }} ALL=\(ALL\) NOPASSWD: ALL'
-        line: '{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
+    - name: Purge old notification app
+      ansible.builtin.apt:
+        name:
+          - dunst
+        state: absent
