@@ -1,8 +1,4 @@
 ---
-- name: Setup Tmux
-  hosts: localhost
-  connection: local
-  tasks:
 - name: Ensure tmux is installed
   ansible.builtin.apt:
     name:

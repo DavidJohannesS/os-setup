@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount SMB Share /mnt/sara
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=//192.168.0.7/sara
+Where=/mnt/sara
+Type=cifs
+Options=credentials=/.smbcreds,uid=1000,gid=1000,vers=3.0
+
+[Install]
+WantedBy=multi-user.target
+
