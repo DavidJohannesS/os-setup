@@ -5,6 +5,7 @@
       - git
     state: present
     update_cache: true
+  become: true
 
 - name: Set editor
   ansible.builtin.git_config:
@@ -15,8 +16,8 @@
 - name: Name main branch
   ansible.builtin.git_config:
     name: init.defaultBranch
-  scope: global
-  value: meow
+    scope: global
+    value: meow
 
 - name: Add Git alias for log
   ansible.builtin.git_config:

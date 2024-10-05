@@ -1,2 +1,3 @@
----
-# vars file for user-apps
+git_user: meow
+git_email: davidjohannesSD@gmail.com
+ansible_user: meow

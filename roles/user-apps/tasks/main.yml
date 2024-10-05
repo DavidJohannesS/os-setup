@@ -4,4 +4,4 @@
   ansible.builtin.include_tasks: git.yml
 
 - name: Set tmux
-  ansible.builtin.include_task: tmux.yml
+  ansible.builtin.include_tasks: tmux.yml
