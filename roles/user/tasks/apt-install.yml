@@ -52,9 +52,11 @@
           - adwaita-icon-theme
         state: present
         update_cache: true
+      become: true
 
     - name: Purge old notification app
       ansible.builtin.apt:
         name:
           - dunst
         state: absent
+      become: true

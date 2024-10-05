@@ -1,2 +1,3 @@
 ---
 # vars file for user
+ansible_user: meow

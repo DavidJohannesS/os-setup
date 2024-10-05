@@ -1,0 +1,6 @@
+---
+- name: Setup User
+  hosts: localhost
+  connection: local
+  roles:
+    - user

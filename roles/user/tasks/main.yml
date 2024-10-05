@@ -1,2 +1,10 @@
 ---
 # tasks file for user
+- name: Create user
+  ansible.builtin.include_tasks: create-user.yml
+
+- name: Install apt packages
+  ansible.builtin.include_tasks: apt-install.yml
+
+- name: Set bash profile
+  ansible.builtin.include_tasks: bash.yml
