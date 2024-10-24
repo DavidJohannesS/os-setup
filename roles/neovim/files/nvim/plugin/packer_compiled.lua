@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/root/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?.lua;/root/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?/init.lua;/root/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?.lua;/root/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/root/.cache/nvim/packer_hererocks/2.1.1713484068/lib/lua/5.1/?.so"
+local package_path_str = "/home/meow/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?.lua;/home/meow/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?/init.lua;/home/meow/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?.lua;/home/meow/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/meow/.cache/nvim/packer_hererocks/2.1.1713484068/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,74 +76,80 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
   ["mason.nvim"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     config = { "\27LJ\2\n‘\1\0\0\4\0\a\0\0146\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0005\3\5\0=\3\6\2B\0\2\1K\0\1\0\tview\1\0\1\nwidth\3(\1\0\2\18hijack_cursor\2\tview\0\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0" },
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["ranger.nvim"] = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0+\2\2\0B\0\2\1K\0\1\0\topen\16ranger-nvim\frequire½\1\1\0\a\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\4\0009\0\5\0009\0\6\0'\2\a\0'\3\b\0'\4\t\0005\5\n\0003\6\v\0=\6\f\5B\0\5\1K\0\1\0\rcallback\0\1\0\2\fnoremap\2\rcallback\0\5\15<leader>ex\6n\20nvim_set_keymap\bapi\bvim\1\0\1\18replace_netrw\2\nsetup\16ranger-nvim\frequire\0" },
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/ranger.nvim",
+    url = "https://github.com/kelly-lin/ranger.nvim"
   },
   ["rose-pine"] = {
     config = { "\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0" },
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/rose-pine",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   }
 }
@@ -153,6 +159,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for rose-pine]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
 time([[Config for rose-pine]], false)
+-- Config for: ranger.nvim
+time([[Config for ranger.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0+\2\2\0B\0\2\1K\0\1\0\topen\16ranger-nvim\frequire½\1\1\0\a\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\4\0009\0\5\0009\0\6\0'\2\a\0'\3\b\0'\4\t\0005\5\n\0003\6\v\0=\6\f\5B\0\5\1K\0\1\0\rcallback\0\1\0\2\fnoremap\2\rcallback\0\5\15<leader>ex\6n\20nvim_set_keymap\bapi\bvim\1\0\1\18replace_netrw\2\nsetup\16ranger-nvim\frequire\0", "config", "ranger.nvim")
+time([[Config for ranger.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n‘\1\0\0\4\0\a\0\0146\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0005\3\5\0=\3\6\2B\0\2\1K\0\1\0\tview\1\0\1\nwidth\3(\1\0\2\18hijack_cursor\2\tview\0\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-tree.lua")
