@@ -202,19 +202,17 @@ workspace $ws1 output HDMI-0
 workspace $ws2 output HDMI-0
 workspace $ws3 output DP-0
 workspace $ws4 output DP-0
-workspace $ws5 output HDMI-0
+workspace $ws5 output DP-0
 workspace $ws6 output HDMI-0
 workspace $ws9 output HDMI-0
 workspace $ws10 output HDMI-0
 exec --no-startup-id xsetroot -solid '#241F31'
 exec --no-startup-id flameshot
 exec --no-startup-id picom
-exec --no-startup-id xrandr --output DP-0 --primary
-exec --no-startup-id xrandr --output HDMI-0 --left-of DP-0
 bindsym Mod1+Tab exec --no-startup-id rofi -show window 
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 #new_window 1pixel
 #new_float 1pixel
-#gaps inner 2
-#gaps outer 3
+#gaps inner 1
+#gaps outer 1
 
