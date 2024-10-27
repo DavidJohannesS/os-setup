@@ -53,6 +53,8 @@
           - adwaita-icon-theme
           - ranger
           - arandr
+          - libpango1.0-0
+          - libpango1.0-dev
         state: present
         update_cache: true
       become: true

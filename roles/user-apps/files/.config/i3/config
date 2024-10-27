@@ -193,7 +193,7 @@ focus_follows_mouse no
 # soft shite #b2b2b2
 # black #00000
 # border, background, font
-client.focused #b2b2b2 #3D3846 #ffffff #ffffff #ffffff
+client.focused #b2b2b2 #3D3846 #ffffff #ffffff #ebbcba
 client.focused_inactive #3D3846 #241F31 #b2b2b2 #ffffff #3D3846
 client.unfocused #3D3846 #241F31 #b2b2b2 #ffffff #3D3846
 #WORKSPACES
