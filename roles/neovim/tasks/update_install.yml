@@ -1,4 +1,3 @@
----
 - name: Clone/Update the packer.nvim repository
   ansible.builtin.git:
     repo: 'https://github.com/wbthomason/packer.nvim'
@@ -7,52 +6,48 @@
   tags:
     - skip_ansible_lint
 
-- name: Check if neovim is installed
+- name: Check if Neovim is installed
   ansible.builtin.command:
     cmd: ls /usr/local/bin/nvim
   register: is_installed
-  changed_when: true
+  failed_when: false
+  changed_when: false
   ignore_errors: true
 
-- name: Check neovim version
+- name: Check Neovim version if installed
   ansible.builtin.command:
     cmd: nvim --version
   when: is_installed.rc == 0
-  changed_when: true
   register: result
+  changed_when: false
 
 - name: Get Current Version
   ansible.builtin.set_fact:
     current_version: "{{ result.stdout.split()[1] }}"
   when: is_installed.rc == 0
 
-- name: Get latest version from github
+- name: Get latest version from GitHub
   ansible.builtin.uri:
     url: https://api.github.com/repos/neovim/neovim/releases/latest
     method: GET
     return_content: true
   register: repo_info
-  when: is_installed.rc == 0
 
 - name: Extract latest tag name
   ansible.builtin.set_fact:
     latest_tag: "{{ repo_info.json.tag_name }}"
-  when: is_installed.rc == 0
 
 - name: Compare versions and set update_needed
   ansible.builtin.set_fact:
     update_needed: "{{ current_version != latest_tag }}"
+  when: is_installed.rc == 0
 
-- name: Debug current and latest versions
-  ansible.builtin.debug:
-    msg: "Current version: {{ current_version }}, Latest version: {{ latest_tag }}"
-
-- name: Download latest neovim
+- name: Download latest Neovim if not installed or update needed
   ansible.builtin.get_url:
     url: "https://github.com/neovim/neovim/releases/download/{{ latest_tag }}/nvim-linux64.tar.gz"
     dest: "/tmp/nvim-linux64.tar.gz"
     mode: '0755'
-  when: update_needed
+  when: update_needed | default(true)
 
 - name: Extract tar
   ansible.builtin.unarchive:
@@ -61,7 +56,7 @@
     mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  when: update_needed
+  when: update_needed | default(true)
 
 - name: Create symbolic link
   ansible.builtin.file:
@@ -72,8 +67,10 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   become: true
+  when: update_needed | default(true)
 
 - name: Remove archive
   ansible.builtin.file:
     path: "/tmp/nvim-linux64.tar.gz"
     state: absent
+  when: update_needed | default(true)
