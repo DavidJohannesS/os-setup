@@ -206,6 +206,7 @@ workspace $ws5 output DP-0
 workspace $ws6 output HDMI-0
 workspace $ws9 output HDMI-0
 workspace $ws10 output HDMI-0
+exec --no-startup-id xfce4-panel
 exec --no-startup-id xsetroot -solid '#241F31'
 exec --no-startup-id flameshot
 exec --no-startup-id picom

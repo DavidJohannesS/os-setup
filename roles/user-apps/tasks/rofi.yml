@@ -1,0 +1,28 @@
+---
+- name: Setup rofi
+  tags:
+    - rofi
+  block:
+    - name: Ensure rofi is installed
+      ansible.builtin.apt:
+        name:
+          - rofi
+        update_cache: true
+      become: true
+
+    - name: Ensure ~/.config/rofi/ exists
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.config/rofi"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0755"
+
+    - name: Link config file
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.config/rofi/rose-pine.rasi"
+        dest: "/home/{{ ansible_user }}/.config/rofi/config.rasi"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0644"
+        state: link
