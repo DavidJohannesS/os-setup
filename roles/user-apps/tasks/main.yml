@@ -11,3 +11,6 @@
 
 - name: Set picom
   ansible.builtin.include_tasks: picom.yml
+
+- name: Link helper scripts
+  ansible.builtin.include_tasks: helper-scripts.yml
