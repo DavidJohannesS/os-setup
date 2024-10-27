@@ -1,17 +1,21 @@
 ---
-- name: Ensure picom is installed
-  ansible.builtin.apt:
-    name:
-      - picom
-    state: present
-    update_cache: true
-  become: true
+- name: Setup picom
+  tags:
+    - picom
+  block:
+    - name: Ensure picom is installed
+      ansible.builtin.apt:
+        name:
+          - picom
+        state: present
+        update_cache: true
+      become: true
 
-- name: Set picom.conf
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/.config/picom/picom.conf"
-    dest: "/home/{{ ansible_user }}/.config/picom/picom.conf"
-    state: link
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0644'
+    - name: Set picom.conf
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.config/picom/picom.conf"
+        dest: "/home/{{ ansible_user }}/.config/picom/picom.conf"
+        state: link
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'

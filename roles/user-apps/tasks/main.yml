@@ -2,15 +2,28 @@
 # tasks file for user-apps
 - name: Setup git
   ansible.builtin.include_tasks: git.yml
+  tags:
+    - git
 
 - name: Set tmux
   ansible.builtin.include_tasks: tmux.yml
+  tags:
+    - tmux
 
 - name: Set i3
   ansible.builtin.include_tasks: i3.yml
+  tags:
+    - i3
 
 - name: Set picom
   ansible.builtin.include_tasks: picom.yml
+  tags:
+    - picom
 
 - name: Link helper scripts
   ansible.builtin.include_tasks: helper-scripts.yml
+
+- name: Setup rofi
+  ansible.builtin.include_tasks: rofi.yml
+  tags:
+    - rofi

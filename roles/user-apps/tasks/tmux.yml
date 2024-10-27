@@ -1,32 +1,36 @@
-- name: Ensure tmux is installed
-  ansible.builtin.apt:
-    name: tmux
-    state: present
-    update_cache: true
-  become: true
+---
+- name: Setup tmux
+  tags:
+    - tmux
+  block:
+    - name: Ensure tmux is installed
+      ansible.builtin.apt:
+        name: tmux
+        state: present
+        update_cache: true
+      become: true
 
-- name: Ensure TPM directory exists
-  ansible.builtin.file:
-    path: "/home/{{ ansible_user }}/.tmux/plugins"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0755'
+    - name: Ensure TPM directory exists
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.tmux/plugins"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
 
-- name: Clone or update TPM repository
-  ansible.builtin.git:
-    repo: "https://github.com/tmux-plugins/tpm"
-    dest: "/home/{{ ansible_user }}/.tmux/plugins/tpm"
-    update: true
-    version: master 
-  become: false
+    - name: Clone or update TPM repository
+      ansible.builtin.git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "/home/{{ ansible_user }}/.tmux/plugins/tpm"
+        update: true
+        version: master
+      become: false
 
-- name: Link tmux.conf
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/.tmux.conf"
-    dest: "/home/{{ ansible_user }}/.tmux.conf"
-    state: link
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0644'
-
+    - name: Link tmux.conf
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.tmux.conf"
+        dest: "/home/{{ ansible_user }}/.tmux.conf"
+        state: link
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'
