@@ -8,32 +8,19 @@
     group: "{{ ansible_user }}"
     mode: '0644'
 
-- name: Create symlink for .bash_profile
+- name: Create symlink for .bash_rc
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/roles/user/files/.bash_profile"
-    dest: "/home/{{ ansible_user }}/.bash_profile"
+    src: "{{ playbook_dir }}/roles/user/files/.bashrc"
+    dest: "/home/{{ ansible_user }}/.bashrc"
     state: link
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
 
-- name: Ensure .bashrc sources .bash_aliases
-  ansible.builtin.lineinfile:
-    path: ~/.bashrc
-    line: 'if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi'
-    state: present
-
-- name: Ensure .bashrc sources .bash_profile
-  ansible.builtin.lineinfile:
-    path: ~/.bashrc
-    line: 'if [ -f ~/.bash_profile ]; then . ~/.bash_profile; fi'
-    state: present
-
 - name: Source bash files
   ansible.builtin.shell:
     cmd: |
       source /home/{{ ansible_user }}/.bash_aliases
-      source /home/{{ ansible_user }}/.bash_profile
       source /home/{{ ansible_user }}/.bashrc
   args:
     executable: /bin/bash

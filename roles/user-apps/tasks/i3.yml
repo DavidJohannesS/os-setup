@@ -1,0 +1,17 @@
+---
+- name: Ensure i3 is installed
+  ansible.builtin.apt:
+    name:
+      - i3
+    state: present
+    update_cache: true
+  become: true
+
+- name: Link i3 conf
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.config/i3/config"
+    dest: "/home/{{ ansible_user }}/.config/i3/config"
+    state: link
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'

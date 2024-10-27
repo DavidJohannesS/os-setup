@@ -19,7 +19,7 @@
 
 - name: Copy tmux.conf
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/roles/user-apps/files/.tmux.conf"
+    src: "{{ role_path }}/files/.tmux.conf"
     dest: "/home/{{ ansible_user }}/.tmux.conf"
     state: link
     owner: "{{ ansible_user }}"
