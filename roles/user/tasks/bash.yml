@@ -1,7 +1,7 @@
 ---
 - name: Create symlink for .bash_aliases
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/roles/user/files/.bash_aliases"
+    src: "{{ role_path }}/files/.bash_aliases"
     dest: "/home/{{ ansible_user }}/.bash_aliases"
     state: link
     owner: "{{ ansible_user }}"
@@ -10,7 +10,7 @@
 
 - name: Create symlink for .bash_rc
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/roles/user/files/.bashrc"
+    src: "{{ role_path }}/files/.bashrc"
     dest: "/home/{{ ansible_user }}/.bashrc"
     state: link
     owner: "{{ ansible_user }}"
