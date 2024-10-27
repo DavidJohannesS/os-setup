@@ -5,3 +5,9 @@
 
 - name: Set tmux
   ansible.builtin.include_tasks: tmux.yml
+
+- name: Set i3
+  ansible.builtin.include_tasks: i3.yml
+
+- name: Set picom
+  ansible.builtin.include_tasks: picom.yml
