@@ -11,6 +11,14 @@
         update_cache: true
       become: true
 
+    - name: Ensure .config/i3 exists
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.config/i3"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
     - name: Link i3 conf
       ansible.builtin.file:
         src: "{{ role_path }}/files/.config/i3/config"

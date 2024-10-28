@@ -1,11 +1,13 @@
 ---
 - name: Update apt packages
+
   tags:
     - update_packages
   block:
-
-    - name: Install core packages
+    - name: Try to install each package
       ansible.builtin.apt:
+        state: present
+        update_cache: true
         name:
           - xfce4-panel
           - picom
@@ -28,7 +30,6 @@
           - x2goserver
           - x2goserver-xsession
           - python3
-          - python3-grip
           - npm
           - nitrogen
           - zoxide
@@ -53,15 +54,18 @@
           - adwaita-icon-theme
           - ranger
           - arandr
-          - libpango1.0-0
           - libpango1.0-dev
-        state: present
-        update_cache: true
       become: true
 
     - name: Purge old notification app
       ansible.builtin.apt:
         name:
           - dunst
+          - gdm3
         state: absent
+      become: true
+
+    - name: Upgrade packages
+      ansible.builtin.apt:
+        upgrade: dist
       become: true
