@@ -2,15 +2,27 @@
 - name: Reload systemd daemon
   ansible.builtin.systemd:
     daemon_reload: true
+  become: true
+
+- name: Link mount unit files to /etc/systemd/system/
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/mounts/{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    state: link
+  loop: "{{ lookup('fileglob', '{{ role_path }}/files/mounts/*.mount', wantlist=True) | map('basename') }}"
+  loop_control:
+    loop_var: item
+  become: true
 
 - name: Enable ALL mount unit files
   ansible.builtin.systemd:
     name: "{{ item }}"
     enabled: true
     state: started
-  loop: "{{ lookup('fileglob', '{{ playbook_dir }}/roles/systemd/file/mounts/*.mount', wantlist=True) | map('basename') }}"
+  loop: "{{ lookup('fileglob', '{{ playbook_dir }}/roles/systemd/files/mounts/*.mount', wantlist=True) | map('basename') }}"
   loop_control:
     loop_var: item
   tags:
     - full_install
     - all_sysd_mounts
+  become: true

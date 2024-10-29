@@ -1,0 +1,7 @@
+[hosts]
+192.168.122.161 ansible_user=david remote_user=david
+
+[all:vars]
+remote_user=david
+ansible_user=david
+

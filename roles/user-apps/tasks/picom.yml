@@ -11,6 +11,14 @@
         update_cache: true
       become: true
 
+    - name: Ensure .config/picom exists
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.config/picom"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
     - name: Set picom.conf
       ansible.builtin.file:
         src: "{{ role_path }}/files/.config/picom/picom.conf"

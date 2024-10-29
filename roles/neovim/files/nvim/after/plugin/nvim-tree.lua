@@ -2,7 +2,10 @@
 require'nvim-tree'.setup {
   -- Automatically update the root directory of the tree on `DirChanged` and `VimEnter`
   update_cwd = true,
-
+  update_focused_file = {
+      enable = true,
+      update_cwd = true,
+  },
   -- View settings
   view = {
     -- Width of the window
