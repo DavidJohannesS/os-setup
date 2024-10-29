@@ -1,0 +1,6 @@
+---
+- name: Setup systemd unit files
+  hosts: localhost
+  connection: local
+  roles:
+    - systemd

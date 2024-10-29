@@ -1,14 +1,13 @@
 [Unit]
-Description=Mount SMB Share /mnt/media
+Description=Mount SMB Share at /media/media
 After=network-online.target
 Wants=network-online.target
 
 [Mount]
 What=//192.168.0.7/media
-Where=/mnt/media
+Where=/media/media
 Type=cifs
-Options=credentials=/.smbcreds,uid=1000,gid=1000,vers=3.0
+Options=credentials=/.smbcreds,rw,iocharset=utf8,file_mode=0777,dir_mode=0777
 
 [Install]
 WantedBy=multi-user.target
-
