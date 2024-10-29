@@ -1,6 +1,6 @@
 ---
 - name: Setup User
-  remote_user: david
-  hosts: all
+  hosts: localhost
+  connection: local
   roles:
     - user

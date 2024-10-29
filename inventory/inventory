@@ -1,3 +1,6 @@
-[all:
+[hosts]
+localhost connection=local ansible_user=meow
+[all]
 git_user=meow
 git_email=davidjohannesSD@gmail.com
+ansible_user=meow
