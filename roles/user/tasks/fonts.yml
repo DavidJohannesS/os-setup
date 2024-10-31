@@ -1,0 +1,16 @@
+---
+- name: Setup font
+  tags:
+    - font
+  block:
+    - name: Copy font over
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/fonts/0xProto"
+        dest: "/usr/share/fonts"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
+    - name: Update font cache
+      ansible.builtin.command: fc-cache -vf
+      changed_when: true

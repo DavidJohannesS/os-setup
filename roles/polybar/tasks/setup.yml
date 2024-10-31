@@ -1,0 +1,16 @@
+---
+- name: Install polybar
+  ansible.builtin.apt:
+    state: present
+    name: polybar
+    update_cache: true
+  become: true
+
+- name: Link .config/polybar
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/polybar"
+    dest: "/home/{{ ansible_user }}/.config/polybar"
+    state: link
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'

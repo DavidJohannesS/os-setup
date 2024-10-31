@@ -1,0 +1,4 @@
+---
+# tasks file for polybar
+- name: Install polybar
+  ansible.builtin.include_tasks: setup.yml

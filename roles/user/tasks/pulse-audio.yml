@@ -1,0 +1,12 @@
+---
+- name: Setup Pulse Audio
+  tags:
+    - audio
+  block:
+    - name: Ensure PulseAudio switches to Bluetooth on connect
+      ansible.builtin.lineinfile:
+        path: /etc/pulse/default.pa
+        regexp: '^load-module module-switch-on-connect'
+        line: 'load-module module-switch-on-connect'
+        state: present
+      become: true

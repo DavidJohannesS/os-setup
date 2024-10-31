@@ -2,7 +2,8 @@
 Description=Mount SMB Share at /media/cloud
 After=network-online.target
 Wants=network-online.target
-
+Conflicts=umount.target
+Before=local-fs.target umount.target
 [Mount]
 What=//192.168.0.7/cloud
 Where=/media/cloud
