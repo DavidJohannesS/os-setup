@@ -3,8 +3,20 @@
 - name: Create user
   ansible.builtin.include_tasks: create-user.yml
 
+- name: Set apt sources list
+  ansible.builtin.include_tasks: apt-sources.yml
+
 - name: Install apt packages
   ansible.builtin.include_tasks: apt-install.yml
 
 - name: Set bash profile
   ansible.builtin.include_tasks: bash.yml
+
+- name: Configure fonts
+  ansible.builtin.include_tasks: fonts.yml
+
+- name: Configure lightdm
+  ansible.builtin.include_tasks: lightdm.yml
+
+- name: COnfigure pulse audio
+  ansible.builtin.include_tasks: pulse-audio.yml

@@ -1,0 +1,16 @@
+---
+- name: Install dunst
+  ansible.builtin.apt:
+    state: present
+    name: dunst
+    update_cache: true
+  become: true
+
+- name: Link .config/dunst
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/dunst"
+    dest: "/home/{{ ansible_user }}/.config/dunst"
+    state: link
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'

@@ -1,0 +1,4 @@
+---
+# tasks file for dunst
+- name: Install dunst
+  ansible.builtin.include_tasks: setup.yml

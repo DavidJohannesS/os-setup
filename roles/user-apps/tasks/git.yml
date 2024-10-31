@@ -40,3 +40,10 @@
         name: user.email
         scope: global
         value: "{{ git_email }}"
+
+    - name: Set default push behavior
+      ansible.builtin.git_config:
+        name: push.default
+        scope: global
+        value: upstream
+

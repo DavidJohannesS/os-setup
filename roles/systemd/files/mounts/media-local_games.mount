@@ -1,7 +1,7 @@
 [Unit]
 Description=Mount SSD /media/local_games
-Conflicts=umount.target
 After=network-online.target
+Conflicts=umount.target
 Before=local-fs.target umount.target
 Wants=network-online.target
 
