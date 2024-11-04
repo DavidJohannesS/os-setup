@@ -1,9 +1,11 @@
 [Unit]
 Description=Mount SMB Share at /media/cloud
-After=network-online.target
 Wants=network-online.target
-Conflicts=umount.target
 Before=local-fs.target umount.target
+ExecStartPre=/bin/sleep 5
+Requires=NetworkManager-wait-online.service
+After=NetworkManager-wait-online.service
+
 [Mount]
 What=//192.168.0.7/cloud
 Where=/media/cloud
@@ -12,3 +14,4 @@ Options=credentials=/.smbcreds,rw,iocharset=utf8,file_mode=0777,dir_mode=0777
 
 [Install]
 WantedBy=multi-user.target
+

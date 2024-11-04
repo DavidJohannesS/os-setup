@@ -10,6 +10,7 @@
         regexp: '^background='
         line: 'background=#3D3846'
         state: present
+      become: true
 
     - name: Set theme in lightdm-gtk-greeter.conf
       ansible.builtin.lineinfile:
@@ -17,3 +18,4 @@
         regexp: '^theme-name='
         line: 'theme-name=Adwaita-dark'
         state: present
+      become: true
