@@ -41,8 +41,6 @@
           - polybar
           - i3
           - lightdm
-          - x2goserver
-          - x2goserver-xsession
           - python3
           - npm
           - nitrogen
@@ -84,6 +82,8 @@
           - steam-libs-amd64:amd64
           - neofetch
           - python3-pip
+          - pasystray
+          - speedtest-cli
       become: true
 
     - name: Upgrade packages

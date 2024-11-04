@@ -1,10 +1,11 @@
 [Unit]
 Description=Mount SMB Share at /media/media
-After=network-online.target
 Wants=network-online.target
 Conflicts=umount.target
 Before=local-fs.target umount.target
-
+ExecStartPre=/bin/sleep 5
+Requires=NetworkManager-wait-online.service 
+After=NetworkManager-wait-online.service
 [Mount]
 What=//192.168.0.7/media
 Where=/media/media

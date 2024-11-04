@@ -1,0 +1,11 @@
+---
+- name: Install apt packages
+  ansible.builtin.apt:
+    state: present
+    update_cache: true
+    name:
+      - selinux-basics
+      - selinux-policy-default
+      - selinux-utils
+      - auditd
+  become: true
