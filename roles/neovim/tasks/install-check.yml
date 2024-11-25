@@ -32,6 +32,7 @@
 
     - name: Extract latest tag name
       ansible.builtin.set_fact:
+
         latest_tag: "{{ repo_info.json.tag_name }}"
       when: is_installed.rc == 0
 
