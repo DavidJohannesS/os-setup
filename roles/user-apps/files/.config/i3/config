@@ -206,14 +206,14 @@ client.focused_inactive #3D3846 #241F31 #b2b2b2 #191724 #191724
 client.unfocused #3D3846 #241F31 #b2b2b2 #191724 #191724
 #WORKSPACES
 
-workspace $ws1 output HDMI-0
-workspace $ws2 output HDMI-0
-workspace $ws3 output DP-0
-workspace $ws4 output DP-0
-workspace $ws5 output DP-0
-workspace $ws6 output HDMI-0
-workspace $ws9 output HDMI-0
-workspace $ws10 output HDMI-0
+#workspace $ws1 output HDMI-0
+#workspace $ws2 output HDMI-0
+#workspace $ws3 output DP-0
+#workspace $ws4 output DP-0
+#workspace $ws5 output DP-0
+#workspace $ws6 output HDMI-0
+#workspace $ws9 output HDMI-0
+#workspace $ws10 output HDMI-0
 #exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/polybar/launch_aio.sh
 bindsym Mod1+p exec --no-startup-id ~/.config/polybar/toggle_aio.sh
@@ -225,7 +225,7 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 #new_window 1pixel
 #new_float 1pixel
-gaps inner 10
+gaps inner 4
 #gaps outer 10
 for_window [class="Polybar"] floating enable 
 for_window [class="Polybar"] border none
