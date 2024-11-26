@@ -1,1 +1,5 @@
-./roles/neovim/files/nvim-linux64
+roles/neovim/files/nvim-linux64/*
+!roles/neovim/files/nvim-linux64/.gitkeep
+roles/neovim/files/nvim/plugin/packer_compiled.lua
+!roles/neovim/files/nvim/plugin/.gitkeep
+
