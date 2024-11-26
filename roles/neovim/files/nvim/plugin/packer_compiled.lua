@@ -74,20 +74,43 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["coc.nvim"] = {
-    config = { "\27LJ\2\n¡\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0°\4 \n      \" Use <Tab> and <S-Tab> to navigate through popup menu\n      inoremap <expr> <Tab> pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\n      inoremap <expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n \n      \" Use K to show documentation in preview window\n      nnoremap <silent> K :call CocActionAsync('doHover')<CR>\n\n      \" Use <C-l> for triggering completion\n      inoremap <silent><expr> <C-l> coc#refresh()\n      \" Use <CR> to confirm the completion suggestion \n      inoremap <expr> <C-y> pumvisible() ? coc#_select_confirm() : \"\\<CR>\"\n    \bcmd\bvim\0" },
+  LuaSnip = {
     loaded = true,
-    path = "/home/meow/.local/share/nvim/site/pack/packer/start/coc.nvim",
-    url = "https://github.com/neoclide/coc.nvim"
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["nvim-llama"] = {
-    config = { "\27LJ\2\nV\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\nmodel\14codellama\ndebug\1\nsetup\15nvim-llama\frequire\0" },
+  ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-llama",
-    url = "https://github.com/jpmcb/nvim-llama"
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["lsp-zero.nvim"] = {
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\në\1\0\0\4\0\a\0\0146\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0005\3\5\0=\3\6\2B\0\2\1K\0\1\0\tview\1\0\1\nwidth\3(\1\0\2\18hijack_cursor\2\tview\0\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0" },
+    config = { "\27LJ\2\në\1\0\0\4\0\a\0\0146\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0005\3\5\0=\3\6\2B\0\2\1K\0\1\0\tview\1\0\1\nwidth\3(\1\0\2\tview\0\18hijack_cursor\2\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0" },
     loaded = true,
     path = "/home/meow/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
@@ -106,6 +129,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/meow/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["ranger.nvim"] = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0+\2\2\0B\0\2\1K\0\1\0\topen\16ranger-nvim\frequireΩ\1\1\0\a\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\4\0009\0\5\0009\0\6\0'\2\a\0'\3\b\0'\4\t\0005\5\n\0003\6\v\0=\6\f\5B\0\5\1K\0\1\0\rcallback\0\1\0\2\rcallback\0\fnoremap\2\5\15<leader>ex\6n\20nvim_set_keymap\bapi\bvim\1\0\1\18replace_netrw\2\nsetup\16ranger-nvim\frequire\0" },
+    loaded = true,
+    path = "/home/meow/.local/share/nvim/site/pack/packer/start/ranger.nvim",
+    url = "https://github.com/kelly-lin/ranger.nvim"
   },
   ["rose-pine"] = {
     config = { "\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0" },
@@ -126,22 +155,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\në\1\0\0\4\0\a\0\0146\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0005\3\5\0=\3\6\2B\0\2\1K\0\1\0\tview\1\0\1\nwidth\3(\1\0\2\tview\0\18hijack_cursor\2\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: ranger.nvim
+time([[Config for ranger.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0+\2\2\0B\0\2\1K\0\1\0\topen\16ranger-nvim\frequireΩ\1\1\0\a\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\4\0009\0\5\0009\0\6\0'\2\a\0'\3\b\0'\4\t\0005\5\n\0003\6\v\0=\6\f\5B\0\5\1K\0\1\0\rcallback\0\1\0\2\rcallback\0\fnoremap\2\5\15<leader>ex\6n\20nvim_set_keymap\bapi\bvim\1\0\1\18replace_netrw\2\nsetup\16ranger-nvim\frequire\0", "config", "ranger.nvim")
+time([[Config for ranger.nvim]], false)
 -- Config for: rose-pine
 time([[Config for rose-pine]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
 time([[Config for rose-pine]], false)
--- Config for: nvim-llama
-time([[Config for nvim-llama]], true)
-try_loadstring("\27LJ\2\nV\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\nmodel\14codellama\ndebug\1\nsetup\15nvim-llama\frequire\0", "config", "nvim-llama")
-time([[Config for nvim-llama]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\në\1\0\0\4\0\a\0\0146\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0005\3\5\0=\3\6\2B\0\2\1K\0\1\0\tview\1\0\1\nwidth\3(\1\0\2\18hijack_cursor\2\tview\0\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: coc.nvim
-time([[Config for coc.nvim]], true)
-try_loadstring("\27LJ\2\n¡\4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0°\4 \n      \" Use <Tab> and <S-Tab> to navigate through popup menu\n      inoremap <expr> <Tab> pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\n      inoremap <expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n \n      \" Use K to show documentation in preview window\n      nnoremap <silent> K :call CocActionAsync('doHover')<CR>\n\n      \" Use <C-l> for triggering completion\n      inoremap <silent><expr> <C-l> coc#refresh()\n      \" Use <CR> to confirm the completion suggestion \n      inoremap <expr> <C-y> pumvisible() ? coc#_select_confirm() : \"\\<CR>\"\n    \bcmd\bvim\0", "config", "coc.nvim")
-time([[Config for coc.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

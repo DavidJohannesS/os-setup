@@ -7,69 +7,63 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Theme
   use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end
+	  'rose-pine/neovim',
+	  as = 'rose-pine',
+	  config = function()
+		  vim.cmd('colorscheme rose-pine')
+	  end
   })
-
-  -- Git integration
-  use 'tpope/vim-fugitive'
-
-  -- Add nvim-llama
-  use {
-    'jpmcb/nvim-llama',
-    config = function()
-      require('nvim-llama').setup {
-        model = 'codellama',  -- Specify the model you want to use
-        debug = false,        -- Enable debugging logs if needed
-      }
-    end
-  }
+  use('tpope/vim-fugitive')
 use {
-  'neoclide/coc.nvim',
-  branch = 'release',
-  run = 'yarn install --frozen-lockfile',
-  config = function()
-    vim.cmd([[ 
-      " Use <Tab> and <S-Tab> to navigate through popup menu
-      inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-      inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
- 
-      " Use K to show documentation in preview window
-      nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v3.x',
+  requires = {
+    --- Uncomment the two plugins below if you want to manage the language servers from neovim
+     {'williamboman/mason.nvim'},
+     {'williamboman/mason-lspconfig.nvim'},
 
-      " Use <C-l> for triggering completion
-      inoremap <silent><expr> <C-l> coc#refresh()
-      " Use <CR> to confirm the completion suggestion 
-      inoremap <expr> <C-y> pumvisible() ? coc#_select_confirm() : "\<CR>"
-    ]])
-  end
+    {'neovim/nvim-lspconfig'},
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'L3MON4D3/LuaSnip'},
+  }
+}
+use {
+  'nvim-telescope/telescope.nvim', tag = '0.1.8',
+-- or                            , branch = '0.1.x',
+  requires = { {'nvim-lua/plenary.nvim'} }
 }
 
-  -- Telescope for fuzzy finding
-  use {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-
-  -- Nvim-tree for file explorer
-  use {
+use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('nvim-web-devicons').setup()
-      require('nvim-tree').setup {
-        hijack_cursor = true,
-        view = {
-          width = 40
+        require('nvim-web-devicons').setup()
+        require('nvim-tree').setup {
+            hijack_cursor = true,
+            view = {
+                width = 40
+            }
         }
-      }
     end
-  }
-end)
+}
+use {
+    "kelly-lin/ranger.nvim",
+    config = function()
+        require("ranger-nvim").setup({
+            replace_netrw = true
+        })
+        vim.api.nvim_set_keymap("n", "<leader>ex", "", {
+            noremap = true,
+            callback = function()
+                require("ranger-nvim").open(true)
+            end,
+        })
+    end
+}
 
+
+
+
+  end)
