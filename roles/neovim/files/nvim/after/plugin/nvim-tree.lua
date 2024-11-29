@@ -1,23 +1,19 @@
--- nvim-tree setup
+vim.o.mouse = 'a';
+
 require'nvim-tree'.setup {
-  -- Automatically update the root directory of the tree on `DirChanged` and `VimEnter`
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+  hijack_netrw = true,
   update_cwd = true,
   update_focused_file = {
-      enable = true,
-      update_cwd = true,
+    enable = true,
+    update_cwd = true,
   },
-  -- View settings
   view = {
-    -- Width of the window
     width = 42,
-  },
-  -- Mappings for the tree
-  actions = {
-    open_file = {
-      window_picker = {
-        enable = true,
-      },
-    },
+    side = 'left',
   },
   renderer = {
     icons = {
@@ -29,14 +25,34 @@ require'nvim-tree'.setup {
       },
     },
   },
+  open_on_tab = false,
+  hijack_cursor = true,
+  actions = {
+    open_file = {
+      resize_window = true,
+    },
+  },
+  -- Use on_attach to define custom key mappings
+  on_attach = function(bufnr)
+    local api = require('nvim-tree.api')
+    local opts = { noremap = true, silent = true, nowait = true, buffer = bufnr }
+
+    -- Custom key mappings for nvim-tree
+    vim.keymap.set('n', '<CR>', api.node.open.edit, opts)  -- Use Enter to open files and folders
+    --vim.keymap.set('n', 'v', api.node.open.vertical, opts)
+    --vim.keymap.set('n', 's', api.node.open.horizontal, opts)
+    --vim.keymap.set('n', 't', api.node.open.tab, opts)
+    vim.keymap.set('n', 'a', api.fs.create, opts)  -- Add mapping for create
+    vim.keymap.set('n', 'r', api.fs.rename, opts)  -- Add mapping for rename
+    vim.keymap.set('n', 'x', api.fs.cut, opts)     -- Add mapping for cut
+    vim.keymap.set('n', 'p', api.fs.paste, opts)   -- Add mapping for paste
+  end,
 }
+
 -- Function to change the top directory
 function ChangeTopDir(dir)
   require'nvim-tree'.change_dir(dir)
 end
--- Custom key mappings for nvim-tree
-vim.api.nvim_set_keymap('n', '<leader>v', ':lua require"nvim-tree.api".node.open.vertical()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>q', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Function to prompt user for directory and change top directory
 function PromptAndChangeTopDir()
@@ -44,6 +60,11 @@ function PromptAndChangeTopDir()
   require'nvim-tree'.change_dir(dir)
 end
 
+-- Global key binding to toggle nvim-tree
+vim.api.nvim_set_keymap('n', '<leader>q', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
 -- Key binding to prompt user for directory
 vim.api.nvim_set_keymap('n', '<leader>cd', ':lua PromptAndChangeTopDir()<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', 't', ':lua require"nvim-tree.api".node.open.tab()<CR>', { noremap = true, silent = true }) 
+vim.api.nvim_set_keymap('n', 'v', ':lua require"nvim-tree.api".node.open.vertical()<CR>', { noremap = true, silent = true })
