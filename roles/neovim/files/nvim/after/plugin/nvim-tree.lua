@@ -38,7 +38,10 @@ require'nvim-tree'.setup {
     local opts = { noremap = true, silent = true, nowait = true, buffer = bufnr }
 
     -- Custom key mappings for nvim-tree
-    vim.keymap.set('n', '<CR>', api.node.open.edit, opts)  -- Use Enter to open files and folders
+-- Mapping Enter key and left mouse click to open/edit action
+vim.keymap.set('n', '<CR>',  api.node.open.edit, opts)
+vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts)
+
     --vim.keymap.set('n', 'v', api.node.open.vertical, opts)
     --vim.keymap.set('n', 's', api.node.open.horizontal, opts)
     --vim.keymap.set('n', 't', api.node.open.tab, opts)
