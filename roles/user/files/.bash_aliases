@@ -60,6 +60,7 @@ if [ -z "$TMUX" ]; then
     tmux attach -t "$SESSION_NAME"
   fi
 fi
+tmux source ~/.tmux.conf
 neofetch
 alias la='ls -lh' 
 alias kc='kubectl'
