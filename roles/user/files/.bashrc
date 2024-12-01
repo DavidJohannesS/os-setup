@@ -44,18 +44,16 @@ esac
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
-
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
-
 
 # Function to get the current Git branch
 function parse_git_branch {
@@ -67,13 +65,26 @@ function parse_kube_context {
     kubectl config current-context 2>/dev/null
 }
 
-# Set a colored prompt with the specified colors
+# Function to extract first and last directories of the path
+function prompt_path() {
+    local path="${PWD/#$HOME/~}"
+    local first_dir=$(echo $path | cut -d'/' -f2)
+    local last_dir=$(basename $path)
+    local first_color='\033[38;5;59m'
+    local middle_color='\033[38;5;109m'    
+    local last_color='\033[38;5;153m'    
+ printf "${first_color}%s${middle_color}../${last_color}%s${reset_color}" "$first_dir" "$last_dir"
+}
 
+# Set a colored prompt with the specified colors
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;204m\]\u@\h\[\033[00m\]:\[\033[38;5;15m\]\w\[\033[38;5;214m\]\[\033[38;5;15m\]/\[\033[38;5;214m\]\W\[\033[38;5;225m\][$(parse_git_branch)]\[\033[38;5;225m\][$(parse_kube_context)]\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;204m\]→ $(prompt_path) \[\033[38;5;225m\]❀ ($(parse_git_branch))$(parse_kube_context)\[\033[38;5;109m\] ❀ \[\033[0m\] '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w[$(parse_git_branch)][$ (parse_kube_context)]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}→ $(prompt_path) ❀ [$(parse_git_branch)][$(parse_kube_context)]\$ '
 fi
+
+# For dynamic updating of PS1
+#export PROMPT_COMMAND='PS1="→ $(prompt_path) ❀ [$(parse_git_branch)][$(parse_kube_context)]$ "'
 
 
 

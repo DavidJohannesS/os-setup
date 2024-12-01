@@ -84,3 +84,5 @@ alias tmux-ka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
 alias tmux-ks='function _tmux_kill_sessions(){ for session in "$@"; do tmux kill-session -t "$session"; done }; _tmux_kill_sessions'
 [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 
+alias mkc='~/tools/helper-scripts/mkc.sh'
+alias mkj='~/tools/helper-scripts/mkj.sh'

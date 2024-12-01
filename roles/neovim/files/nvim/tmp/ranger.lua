@@ -1,7 +1,7 @@
 local ranger_nvim = require("ranger-nvim")
 ranger_nvim.setup({
     enable_cmds = true,
-    replace_netrw = true,
+    replace_netrw = false,
     keybinds = {
         ["ov"] = ranger_nvim.OPEN_MODE.vsplit,
         ["oh"] = ranger_nvim.OPEN_MODE.split,
@@ -14,6 +14,8 @@ ranger_nvim.setup({
         width = 1,
         x = 0.5,
         y = 0.5,
-    }
+    },
+    commands = true
+
 })
 

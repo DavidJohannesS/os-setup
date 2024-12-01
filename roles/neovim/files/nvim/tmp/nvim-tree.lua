@@ -5,7 +5,7 @@ require'nvim-tree'.setup {
     enable = true,
     auto_open = true,
   },
-  hijack_netrw = true,
+  hijack_netrw = false,
   update_cwd = true,
   update_focused_file = {
     enable = true,
@@ -46,6 +46,7 @@ vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts)
     --vim.keymap.set('n', 's', api.node.open.horizontal, opts)
     --vim.keymap.set('n', 't', api.node.open.tab, opts)
     vim.keymap.set('n', 'a', api.fs.create, opts)  -- Add mapping for create
+    vim.keymap.set('n', 'd', api.fs.remove, opts)  -- Add mapping for create
     vim.keymap.set('n', 'r', api.fs.rename, opts)  -- Add mapping for rename
     vim.keymap.set('n', 'x', api.fs.cut, opts)     -- Add mapping for cut
     vim.keymap.set('n', 'p', api.fs.paste, opts)   -- Add mapping for paste
@@ -69,5 +70,5 @@ vim.api.nvim_set_keymap('n', '<leader>q', ':NvimTreeToggle<CR>', { noremap = tru
 -- Key binding to prompt user for directory
 vim.api.nvim_set_keymap('n', '<leader>cd', ':lua PromptAndChangeTopDir()<CR>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', 't', ':lua require"nvim-tree.api".node.open.tab()<CR>', { noremap = true, silent = true }) 
-vim.api.nvim_set_keymap('n', 'v', ':lua require"nvim-tree.api".node.open.vertical()<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', 't', ':lua require"nvim-tree.api".node.open.tab()<CR>', { noremap = true, silent = true }) 
+--vim.api.nvim_set_keymap('n', 'v', ':lua require"nvim-tree.api".node.open.vertical()<CR>', { noremap = true, silent = true })
