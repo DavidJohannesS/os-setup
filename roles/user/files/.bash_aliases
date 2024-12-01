@@ -7,6 +7,19 @@ export VISUAL=vim
 eval "$(zoxide init bash)"
 alias getcmd='cat /home/$USER/.bash_history | grep'
 alias ll='ls -lahs'
+
+alias home='cd ~'
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias openports='netstat -nape --inet'
+alias folders='du -h --max-depth=1'
+alias untar='~/tools/helper-scripts/untar.sh'
+alias gcp="~/tools/helper-scripts/gcp.sh"
+
+
 # Function to check if a session exists and is attached
 is_attached() {
   local session_name="$1"
@@ -69,4 +82,5 @@ alias ag='ansible-galaxy'
 alias tray='pstree -AcuT $USER'
 alias tmux-ka="tmux ls | cut -d: -f1 | xargs -n 1 tmux kill-session -t"
 alias tmux-ks='function _tmux_kill_sessions(){ for session in "$@"; do tmux kill-session -t "$session"; done }; _tmux_kill_sessions'
+[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 

@@ -215,7 +215,7 @@ workspace $ws6 output HDMI-0
 workspace $ws9 output HDMI-0
 workspace $ws10 output HDMI-0
 #exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id ~/.config/polybar/launch_aio.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 bindsym Mod1+p exec --no-startup-id ~/.config/polybar/toggle_aio.sh
 bindsym Mod1+Shift+W exec --no-startup-id ~/.config/polybar/toggle_ws.sh
 bindsym Mod1+t exec --no-startup-id ~/.config/polybar/toggle_tray.sh
@@ -225,7 +225,7 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 #new_window 1pixel
 #new_float 1pixel
-gaps inner 10
+#gaps inner 0
 #gaps outer 10
 for_window [class="Polybar"] floating enable 
 for_window [class="Polybar"] border none
