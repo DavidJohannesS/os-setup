@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
             vim.cmd('colorscheme rose-pine')
         end
     })
+    use 'preservim/nerdtree'
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',

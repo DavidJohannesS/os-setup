@@ -11,7 +11,7 @@ function OpenTerminalInSplit()
   vim.cmd('startinsert') -- Enter insert mode in the terminal
 end
 vim.api.nvim_set_keymap('n', '<leader>ot', ':lua OpenTerminalInSplit()<CR>', { noremap = true, silent = true })
-
+-- Add this line to your `init.lua`
 -- Compile the current Java file
 --vim.api.nvim_set_keymap('n', '<leader>jc', ':w<CR>:!javac %<CR>', { noremap = true, silent = true })
 
@@ -25,25 +25,29 @@ vim.api.nvim_set_keymap('n', '<leader>ot', ':lua OpenTerminalInSplit()<CR>', { n
 ---- Map the function to a key combination
 --vim.api.nvim_set_keymap('n', '<leader>jr', ':lua RunJavaClass()<CR>', { noremap = true, silent = true })
 --
--- Function to open Ranger in a vertical split with 25% width
-local function open_ranger_in_vsplit()
-  -- Save current window id and buffer id
-  local current_win = vim.api.nvim_get_current_win()
-  local current_buf = vim.api.nvim_get_current_buf()
+--vim.g.netrw_liststyle = 3
+--vim.g.netrw_browse_split = 4
+--vim.g.netrw_winsize = 20
+--
+--local netrw_bufnr = nil
 
-  -- Open ranger in a vertical split
-  vim.cmd('vsplit')
-  -- Set the width of the split to 25%
-  vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.25))
-
-  -- Open ranger
-  vim.api.nvim_command('Ranger')
-
-  -- Restore focus to original window and buffer
-  vim.api.nvim_set_current_win(current_win)
-  vim.api.nvim_set_current_buf(current_buf)
+local function toggle_netrw_side()
+  -- Check if the netrw buffer is already open
+  if netrw_bufnr ~= nil and vim.api.nvim_buf_is_valid(netrw_bufnr) then
+    -- Close the netrw window
+    vim.cmd('bdelete ' .. netrw_bufnr)
+    netrw_bufnr = nil
+  else
+    -- Open netrw in a side window
+    vim.cmd('Vexplore')
+    vim.cmd('wincmd H')
+    vim.cmd('vertical resize 40')
+    -- Save the netrw buffer number
+    netrw_bufnr = vim.api.nvim_get_current_buf()
+  end
 end
 
--- Map the custom function to a keybinding (e.g., <leader>rv)
-vim.api.nvim_set_keymap('n', '<leader>rv', ':lua open_ranger_in_vsplit()<CR>', { noremap = true, silent = true })
+-- Map the shortcut to <leader>x for toggling netrw in a side window
+--vim.keymap.set('n', '<leader>x', toggle_netrw_side, { desc = 'Toggle netrw in a side window' })
+
 

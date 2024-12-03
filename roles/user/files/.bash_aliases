@@ -74,7 +74,6 @@ if [ -z "$TMUX" ]; then
   fi
 fi
 tmux source ~/.tmux.conf
-neofetch
 alias la='ls -lh' 
 alias kc='kubectl'
 alias ap='ansible-playbook'
