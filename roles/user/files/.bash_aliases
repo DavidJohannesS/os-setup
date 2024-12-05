@@ -15,10 +15,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias openports='netstat -nape --inet'
-alias folders='du -h --max-depth=1'
+alias dir='du -h --max-depth=1'
 alias untar='~/tools/helper-scripts/untar.sh'
 alias gcp="~/tools/helper-scripts/gcp.sh"
-
+alias lt="tree -L 1"
 
 # Function to check if a session exists and is attached
 is_attached() {
