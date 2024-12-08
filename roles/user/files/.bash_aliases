@@ -85,3 +85,4 @@ alias tmux-ks='function _tmux_kill_sessions(){ for session in "$@"; do tmux kill
 
 alias mkc='~/tools/helper-scripts/mkc.sh'
 alias mkj='~/tools/helper-scripts/mkj.sh'
+alias hidden='ls -Adl .*'
