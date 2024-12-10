@@ -1,15 +1,15 @@
 {
-  "coc.preferences.extensionUpdateCheck": "auto",
-  "coc.extensions": [
-    "coc-java",
-    "yaegassy/coc-ansible",
-    "coc-docker",
-    "coc-sh",
-    "coc-pyright",
-    "coc-clangd",
-    "coc-lua",
-    "coc-vimscript"
-  ],
-  "java.jdt.ls.vmargs": "-javaagent:/home/meow/lombok.jar -Xbootclasspath/a:/home/meow/lombok.jar"
+  "languageserver": {
+    "java": {
+      "command": "java",
+      "args": [
+        "-javaagent:/home/meow/lombok.jar",
+        "-Xbootclasspath/a:/home/meow/lombok.jar",
+      ],
+      "filetypes": ["java"],
+      "rootPatterns": ["pom.xml", "build.gradle", ".project"],
+      "trace.server": "verbose"
+    }
+  }
 }
 
