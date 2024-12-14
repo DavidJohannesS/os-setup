@@ -4,7 +4,7 @@
       "command": "java",
       "args": [
         "-javaagent:/home/meow/lombok.jar",
-        "-Xbootclasspath/a:/home/meow/lombok.jar",
+        "-Xbootclasspath/a:/home/meow/lombok.jar"
       ],
       "filetypes": ["java"],
       "rootPatterns": ["pom.xml", "build.gradle", ".project"],

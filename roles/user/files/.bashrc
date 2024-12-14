@@ -70,7 +70,7 @@ function parse_kube_context {
 # Set a colored prompt with the specified colors
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;153m\]→ \[\033[38;5;15m\]\W\[\033[38;5;214m\]\[\033[38;5;15m\]/\[\033[38;5;225m\]\[\033[38;5;153m\] ❀ ($(parse_git_branch)) ❀ \[\033[38;5;225m\]$(parse_kube_context)\[\033[00m\] '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;153m\]→ \[\033[38;5;15m\]\W\[\033[38;5;214m\]\[\033[38;5;15m\]\[\033[38;5;225m\]\[\033[38;5;153m\] ❀ ($(parse_git_branch)) ❀ \[\033[38;5;225m\]$(parse_kube_context)\[\033[00m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w($(parse_git_branch))[$ (parse_kube_context)]\$ '
 fi
