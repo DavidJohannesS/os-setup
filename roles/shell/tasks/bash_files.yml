@@ -1,0 +1,46 @@
+---
+- name: Ensure Config dir exists
+  ansible.builtin.file:
+    path: "{{ config_dir }}/shell/bash"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+  become: true
+
+- name: Copy files to host
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/bash"
+    dest: "{{ config_dir }}/shell/"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: Handle old bash dot files
+  ansible.builtin.include_tasks: backup.yml
+
+- name: Create symlink for .bash_aliases
+  ansible.builtin.file:
+    src: "{{ config_dir }}/shell/bash/.bash_aliases"
+    dest: "/home/{{ ansible_user }}/.bash_aliases"
+    state: link
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: Create symlink for .bash_rc
+  ansible.builtin.file:
+    src: "{{ config_dir }}/shell/bash/.bashrc"
+    dest: "/home/{{ ansible_user }}/.bashrc"
+    state: link
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: Source bashrc
+  ansible.builtin.shell:
+    cmd: |
+      source /home/{{ ansible_user }}/.bashrc
+  args:
+    executable: /bin/bash
+  changed_when: true

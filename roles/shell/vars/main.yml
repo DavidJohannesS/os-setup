@@ -1,0 +1,3 @@
+---
+# vars file for bash
+config_dir: "/home/{{ ansible_user }}/CONFIG"

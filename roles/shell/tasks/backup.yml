@@ -1,0 +1,44 @@
+---
+- name: Check if .bashrc exists
+  ansible.builtin.stat:
+    path: "/home/{{ ansible_user }}/.bashrc"
+  register: bashrc
+
+- name: Check if .bash_aliases exists
+  ansible.builtin.stat:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+  register: bash_aliases
+
+- name: Backup old bashrc
+  ansible.builtin.copy:
+    src: "/home/{{ ansible_user }}/.bashrc"
+    dest: "{{ config_dir }}/shell/bash/._OLD_bashrc"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    remote_src: true
+  when: bashrc.stat.exists and not bashrc.stat.islnk
+
+- name: Delete old bashrc
+  ansible.builtin.file:
+    path: "/home/{{ ansible_user }}/.bashrc"
+    state: absent
+  become: true
+  when: bashrc.stat.exists and not bashrc.stat.islnk
+
+- name: Backup old bash_aliases
+  ansible.builtin.copy:
+    src: "/home/{{ ansible_user }}/.bash_aliases"
+    dest: "{{ config_dir }}/shell/bash/._OLD_bash_aliases"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    remote_src: true
+  when: bash_aliases.stat.exists and not bash_aliases.stat.islnk
+
+- name: Delete old bash_aliases
+  ansible.builtin.file:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: absent
+  become: true
+  when: bash_aliases.stat.exists and not bash_aliases.stat.islnk
