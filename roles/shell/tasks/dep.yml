@@ -1,0 +1,11 @@
+---
+- name: Packages needed for config files
+  ansible.builtin.apt:
+    name:
+      - zoxide
+      - zsh
+      - bash
+      - tmux
+    state: present
+    update_cache:  true
+  become: true

@@ -1,0 +1,6 @@
+---
+- name: Install dependencies
+  ansible.builtin.include_tasks: dep.yml
+
+- name: Setup bash conifg files
+  ansible.builtin.include_tasks: bash_files.yml 
