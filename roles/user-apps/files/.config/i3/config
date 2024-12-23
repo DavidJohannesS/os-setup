@@ -222,12 +222,13 @@ bindsym Mod1+p exec --no-startup-id ~/.config/polybar/toggle_aio.sh
 bindsym Mod1+Shift+W exec --no-startup-id ~/.config/polybar/toggle_ws.sh
 bindsym Mod1+t exec --no-startup-id ~/.config/polybar/toggle_tray.sh
 exec --no-startup-id flameshot
+#exec --no-startup-id pasystray
 exec --no-startup-id picom
 bindsym Mod1+Tab exec --no-startup-id rofi -show window 
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 #new_window 1pixel
 #new_float 1pixel
-#gaps inner 0
+#gaps inner 10
 #gaps outer 10
 for_window [class="Polybar"] floating enable 
 for_window [class="Polybar"] border none

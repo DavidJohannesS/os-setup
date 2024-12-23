@@ -4,12 +4,34 @@
     daemon_reload: true
   become: true
 
+- name: Set config dir
+  ansible.builtin.set_fact:
+    systemd_mounts_dir: "{{ config_dir }}/systemd"
+
+- name: Ensure config_dir exists
+  ansible.builtin.file:
+    name: "{{ systemd_mounts_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  become: true
+
+- name: Copy files to host
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/mounts"
+    dest: "{{ systemd_mounts_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  become: true
+
 - name: Link mount unit files to /etc/systemd/system/
   ansible.builtin.file:
-    src: "{{ role_path }}/files/mounts/{{ item }}"
+    src: "{{ systemd_mounts_dir}}/mounts/{{ item }}"
     dest: "/etc/systemd/system/{{ item }}"
     state: link
-  loop: "{{ lookup('fileglob', '{{ role_path }}/files/mounts/*.mount', wantlist=True) | map('basename') }}"
+  loop: "{{ lookup('fileglob', '{{ systemd_mounts_dir }}/mounts/*.mount', wantlist=True) | map('basename') }}"
   loop_control:
     loop_var: item
   become: true
@@ -19,10 +41,7 @@
     name: "{{ item }}"
     enabled: true
     state: started
-  loop: "{{ lookup('fileglob', '{{ playbook_dir }}/roles/systemd/files/mounts/*.mount', wantlist=True) | map('basename') }}"
+  loop: "{{ lookup('fileglob', '{{ systemd_mounts_dir}}/mounts/*.mount', wantlist=True) | map('basename') }}"
   loop_control:
     loop_var: item
-  tags:
-    - full_install
-    - all_sysd_mounts
   become: true
