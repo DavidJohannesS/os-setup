@@ -1,0 +1,56 @@
+---
+- name: Create a new user
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: /bin/bash
+    create_home: true
+  become: true
+
+- name: Ensure [user] section exists in wsl.conf
+  ansible.builtin.lineinfile:
+    path: /etc/wsl.conf
+    create: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0655'
+    line: "[user]"
+    insertafter: EOF
+    state: present
+  become: true
+
+- name: Set the default user in WSL
+  ansible.builtin.lineinfile:
+    path: /etc/wsl.conf
+    create: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0655'
+    line: "default=<username>"
+    insertafter: "[user]"
+  become: true
+
+- name: Fix user pwd promt
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^{{ ansible_user }} ALL=\(ALL\) NOPASSWD: ALL'
+    line: '{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+  become: true
+
+- name: Clean logs every 30 days
+  ansible.builtin.cron:
+    name: "Clean /var/log"
+    job: "find /var/log/ -type f -mtime +30 -delete"
+    special_time: "monthly"
+    user: "root"
+  become: true
+
+- name: Clear cache every 7 days
+  ansible.builtin.cron:
+    name: "Clear /var/cache"
+    job: "rm -rf /var/cache/*"
+    weekday: "7"
+    special_time: "weekly"
+    user: "root"
+  become: true
