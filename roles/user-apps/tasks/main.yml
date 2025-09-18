@@ -1,0 +1,7 @@
+---
+# tasks file for user-apps
+- name: Setup git
+  ansible.builtin.include_tasks: git.yml
+
+- name: Set tmux
+  ansible.builtin.include_tasks: tmux.yml

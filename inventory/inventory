@@ -1,0 +1,3 @@
+[all:vars]
+git_user=meow
+git_email=davidjohannesSD@gmail.com

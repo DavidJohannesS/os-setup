@@ -1,0 +1,6 @@
+---
+- name: Setup User Apps
+  hosts: localhost
+  connection: local
+  roles:
+    - user-apps
