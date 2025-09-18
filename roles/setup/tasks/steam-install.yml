@@ -1,0 +1,36 @@
+---
+- name: Install nvidia liberries required for steam
+  tags:
+    - steam
+    - nvidia
+  block:
+    - name: Add i386 Architecture
+      ansible.builtin.command: dpkg --add-architecture i386
+      changed_when: true
+      become: true
+
+    - name: Update Apt Cache
+      ansible.builtin.apt:
+        update_cache: true
+      become: true
+
+    - name: Install Steam and NVIDIA Drivers
+      ansible.builtin.apt:
+        update_cache: true
+        name:
+          - libc6:amd64
+          - libc6:i386
+          - libegl1:amd64
+          - libegl1:i386
+          - libgbm1:amd64
+          - libgbm1:i386
+          - libgl1-mesa-dri:amd64
+          - libgl1-mesa-dri:i386
+          - libgl1:amd64
+          - libgl1:i386
+          - libnvidia-ngx1
+          - nvidia-driver-libs:i386
+          - steam-libs-amd64:amd64
+          - steam-libs-i386:i386
+        state: present
+      become: true

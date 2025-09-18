@@ -1,0 +1,27 @@
+---
+- name: Copy unit files to /etc/systemd/system/
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/mounts/{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  loop: "{{ lookup('fileglob', '{{ role_path }}/files/mounts/*.mount', wantlist=True) | map('basename') }}"
+  loop_control:
+    loop_var: item
+  become: true
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+
+- name: Enable ALL mount unit files
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop: "{{ lookup('fileglob', '/etc/systemd/system/media-*.mount', wantlist=True) | map('basename') }}"
+  loop_control:
+    loop_var: item
+  become: true

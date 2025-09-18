@@ -1,0 +1,76 @@
+---
+- name: Update apt packages
+  tags:
+    - apt_install
+  block:
+    - name: Update Apt Cache
+      ansible.builtin.apt:
+        update_cache: true
+      become: true
+
+    - name: Try to install each package
+      ansible.builtin.apt:
+        state: present
+        update_cache: true
+        name:
+          - network-manager-gnome
+          - brightnessctl
+          - wireguard-tools
+          - jq
+          - zip
+          - pavucontrol
+          - nextcloud-desktop
+          - git-lfs
+          - picom
+          - thunar
+          - speech-dispatcher
+          - dunst
+          - thunar-archive-plugin
+          - ufw
+          - xfce4-terminal
+          - rofi
+          - flameshot
+          - git
+          - vim
+          - net-tools
+          - bluez
+          - blueman
+          - polybar
+          - i3
+          - lightdm
+          - python3
+          - python3-psycopg2
+          - python3.13-venv
+          - npm
+          - nitrogen
+          - zoxide
+          - lxappearance
+          - breeze-cursor-theme
+          - curl
+          - fzf
+          - htop
+          - nala
+          - pass
+          - s-tui
+          - pulseeffects
+          - tmux
+          - vlc
+          - shotwell
+          - xarchiver
+          - xclip
+          - cifs-utils
+          - gvfs-backends
+          - golang-go
+          - tree
+          - adwaita-icon-theme
+          - arandr
+          - libpango1.0-dev
+          - python3-pip
+          - pasystray
+          - cbatticon
+          - btop
+          - gource
+          - feh
+          - 7zip
+          - speedtest-cli
+      become: true

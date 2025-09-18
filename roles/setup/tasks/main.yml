@@ -1,0 +1,25 @@
+---
+# tasks file for user
+- name: Create user
+  ansible.builtin.include_tasks: create-user.yml
+  tags: user
+
+- name: Set apt sources list
+  ansible.builtin.include_tasks: apt-sources.yml
+  tags: sources
+
+- name: Install apt packages
+  ansible.builtin.include_tasks: apt-install.yml
+  tags: apt_install
+
+- name: Setup Steam nvidia drivers
+  ansible.builtin.include_tasks: steam-install.yml
+  tags: steam
+
+- name: Configure lightdm
+  ansible.builtin.include_tasks: lightdm.yml
+  tags: lightdm
+
+- name: COnfigure pulse audio
+  ansible.builtin.include_tasks: pulse-audio.yml
+  tags: audio

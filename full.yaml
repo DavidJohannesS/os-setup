@@ -1,0 +1,18 @@
+---
+- name: Full System-Setup
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    ansible_user: "david"
+  roles:
+    - role: setup
+      tags:
+        - setup
+    - role: systemd
+      tags:
+        - systemd
+    - role: neovim
+      tags:
+        - neovim
+      

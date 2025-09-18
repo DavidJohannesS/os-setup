@@ -1,8 +1,5 @@
 ---
 # tasks file for neovim
-- name: Set current user
-  ansible.builtin.set_fact:
-    ansible_user: "{{ ansible_env.SUDO_USER | default(ansible_env.USER) }}"
 
 - name: Update || Install Neovim
   ansible.builtin.include_tasks: update_install.yml

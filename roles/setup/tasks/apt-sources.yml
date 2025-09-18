@@ -1,0 +1,35 @@
+- name: Configure apt sources list
+  tags:
+    - sources
+  block:
+    - name: Check if sources.list exists
+      ansible.builtin.stat:
+        path: /etc/apt/sources.list
+      register: sources_list_stat
+
+    - name: Backup current sources.list
+      ansible.builtin.copy:
+        src: /etc/apt/sources.list
+        dest: /etc/apt/sources.list.bak
+        mode: '0644'
+      become: true
+      when: sources_list_stat.stat.exists
+
+    - name: Remove old debian sources
+      ansible.builtin.file:
+        path: /etc/apt/sources.list
+        state: absent
+      become: true
+
+    - name: Copy Debian Sources
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/debian.sources"
+        dest: "{{ role_path }}/files/updates.sources"
+        mode: '0644'
+        owner: root
+      become: true
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+      become: true
