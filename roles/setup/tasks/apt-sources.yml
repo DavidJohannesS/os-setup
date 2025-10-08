@@ -24,7 +24,15 @@
     - name: Copy Debian Sources
       ansible.builtin.copy:
         src: "{{ role_path }}/files/debian.sources"
-        dest: "{{ role_path }}/files/updates.sources"
+        dest: "/etc/apt/sources.list.d/debian.sources"
+        mode: '0644'
+        owner: root
+      become: true
+
+    - name: Copy Debian Sources
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/updates.sources"
+        dest: "/etc/apt/sources.list.d/updates.sources"
         mode: '0644'
         owner: root
       become: true

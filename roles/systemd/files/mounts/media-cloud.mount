@@ -2,7 +2,7 @@
 Description=Mount SMB Share at /media/cloud
 ExecStartPre=/bin/sleep 5
 Requires=network-online.target
-After=network-online.target
+After=default.target
 
 [Mount]
 What=//192.168.0.7/cloud

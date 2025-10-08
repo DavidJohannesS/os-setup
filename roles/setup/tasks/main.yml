@@ -12,10 +12,6 @@
   ansible.builtin.include_tasks: apt-install.yml
   tags: apt_install
 
-- name: Setup Steam nvidia drivers
-  ansible.builtin.include_tasks: steam-install.yml
-  tags: steam
-
 - name: Configure lightdm
   ansible.builtin.include_tasks: lightdm.yml
   tags: lightdm
