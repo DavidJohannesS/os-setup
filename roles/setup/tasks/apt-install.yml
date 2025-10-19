@@ -71,6 +71,10 @@
           - btop
           - gource
           - feh
+          - fastfetch
           - 7zip
           - speedtest-cli
+          - redshift
+          - redshift-gtk
+          - firefox-esr
       become: true
