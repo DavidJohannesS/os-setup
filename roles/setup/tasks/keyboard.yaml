@@ -1,0 +1,28 @@
+---
+- name: Setup Keyboard
+  tags:
+    - keyboard
+  block:
+    - name: Unset tty keyboard
+      ansible.builtin.file:
+        path: /etc/default/keyboard
+        state: absent
+      become: true
+
+    - name: Set tty keyboard
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/keyboard"
+        dest: /etc/default/keyboard
+        owner: root
+        group: root
+        mode: '0644'
+      become: true
+
+    - name: Set Xsession keyboard
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/45keyboard-layout"
+        dest: /etc/X11/Xsession.d/45keyboard-layout
+        owner: root
+        group: root
+        mode: '0755'
+      become: true

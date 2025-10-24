@@ -19,3 +19,7 @@
 - name: COnfigure pulse audio
   ansible.builtin.include_tasks: pulse-audio.yml
   tags: audio
+
+- name: Configure keyboard layout
+  ansible.builtin.include_tasks: keyboard.yaml
+  tags: keyboard
