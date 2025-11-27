@@ -2,3 +2,8 @@
 # tasks file for systemd
 - name: Enable mounts
   ansible.builtin.include_tasks: mounts.yml
+  tags: enable_sysd
+- name: Disable mounts
+  ansible.builtin.include_tasks: disable.yaml
+  tags: disable_sysd
+

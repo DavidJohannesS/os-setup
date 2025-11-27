@@ -49,3 +49,8 @@
         special_time: "monthly"
         user: "root"
       become: true
+
+    - name: Create config dirs
+      ansible.builtin.shell: |
+        mkdir -p ~/.config/dunst ~/.config/polybar ~/.config/i3 ~/.config/nvim ~/.config/picom ~/.config/rofi 
+      changed_when: true

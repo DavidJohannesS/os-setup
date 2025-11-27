@@ -1,0 +1,14 @@
+---
+- name: Disable all mounts
+  tags:
+    - disable_sysd
+  block:
+    - name: Disable ALL mount unit files
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        enabled: false
+        state: stopped
+      loop: "{{ lookup('fileglob', '/etc/systemd/system/media-*.mount', wantlist=True) | map('basename') }}"
+      loop_control:
+        loop_var: item
+      become: true
