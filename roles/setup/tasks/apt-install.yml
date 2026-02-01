@@ -17,6 +17,7 @@
           - brightnessctl
           - wireguard-tools
           - jq
+          - libdbus-glib-1-2
           - zip
           - pavucontrol
           - nextcloud-desktop
