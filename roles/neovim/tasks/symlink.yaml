@@ -1,0 +1,33 @@
+---
+- name: Symlink nvim config
+  tags:
+    - nvim
+  block:
+    - name: Remove old /opt/nvim/current
+      ansible.builtin.file:
+        path: /opt/nvim/current
+        state: absent
+      become: true
+      when: current_version is not defined or current_version != latest_tag
+
+    - name: Create symlink to current version
+      ansible.builtin.file:
+        src: "{{ latest_install_dir }}"
+        dest: "/opt/nvim/current"
+        state: link
+      become: true
+      when: current_version is not defined or current_version != latest_tag
+
+    - name: Symlink Neovim into system paths
+      ansible.builtin.file:
+        src: "/opt/nvim/current/{{ item.src }}"
+        dest: "/usr/local/{{ item.dest }}"
+        state: link
+        force: true
+      become: true
+      loop:
+        - { src: "bin/nvim", dest: "bin/nvim" }
+        - { src: "share/man/man1/nvim.1", dest: "share/man/man1/nvim.1" }
+        - { src: "share/applications/nvim.desktop", dest: "share/applications/nvim.desktop" }
+        - { src: "share/icons/hicolor/128x128/apps/nvim.png", dest: "share/icons/hicolor/128x128/apps/nvim.png" }
+      when: current_version is not defined or current_version != latest_tag

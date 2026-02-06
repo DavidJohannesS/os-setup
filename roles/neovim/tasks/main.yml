@@ -3,3 +3,5 @@
 
 - name: Update || Install Neovim
   ansible.builtin.include_tasks: update_install.yml
+  tags:
+    - nvim
