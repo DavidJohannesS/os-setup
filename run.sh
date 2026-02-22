@@ -17,6 +17,7 @@ options=(
     "Setup smb mounts" #9
     "Disable smb mounts"
     "Pull manageRepos"
+    "Setup vpn border color switcher"
     "Quit" #12
 )
 function pulldotfm()
@@ -41,7 +42,8 @@ select opt in "${options[@]}";do
         9) $cmd enable_sysd ;;
         10)$cmd disable_sysd ;;
         11) pulldotfm ;;
-        12) echo "Exiting..." && break ;;
+        12) $cmd vpn ;;
+        13) echo "Exiting..." && break ;;
         *) echo "Invalid" ;;
     esac
 done

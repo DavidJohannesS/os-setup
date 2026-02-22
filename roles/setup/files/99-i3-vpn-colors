@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "$(date) - Interface: $1 Event: $2" >> /tmp/vpn-dispatch.log
+
+if [[ "$2" == "vpn-up" || "$2" == "vpn-down" || "$2" == "up" || "$2" == "down" ]]; then
+    su david -c "/home/david/.config/i3/color-switcher.sh"
+fi

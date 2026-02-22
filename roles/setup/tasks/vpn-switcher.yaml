@@ -1,0 +1,18 @@
+---
+- name: I3 color switcher on vpn toggle
+  tags:
+    - vpn
+  block:
+    - name: Ensure dispatcher.d dir exists
+      ansible.builtin.file:
+        state: directory
+        path: /etc/NetworkManager/dispatcher.d
+        mode: "0755"
+      become: true
+
+    - name: Copy script caller
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/99-i3-vpn-colors"
+        dest: "/etc/NetworkManager/dispatcher.d/99-i3-vpn-colors"
+        mode: "0755"
+      become: true

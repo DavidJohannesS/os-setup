@@ -6,4 +6,3 @@
 - name: Disable mounts
   ansible.builtin.include_tasks: disable.yaml
   tags: disable_sysd
-

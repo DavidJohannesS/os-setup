@@ -23,3 +23,8 @@
 - name: Configure keyboard layout
   ansible.builtin.include_tasks: keyboard.yaml
   tags: keyboard
+
+- name: Setup border color switcher on vpn toggle
+  ansible.builtin.include_tasks: vpn-switcher.yaml
+  tags: vpn
+

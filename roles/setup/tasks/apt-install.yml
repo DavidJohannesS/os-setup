@@ -78,4 +78,11 @@
           - redshift
           - redshift-gtk
           - firefox-esr
+          - systemd-resolved
+          - git-delta
+      become: true
+    - name: Purge ifupdown
+      ansible.builtin.apt:
+        state: absent
+        name: ifupdown
       become: true
